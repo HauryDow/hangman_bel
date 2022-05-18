@@ -17,7 +17,7 @@ def main():
     # Make sure to set use_context=True to use the new context based callbacks
     # Post version 12 this will no longer be necessary
 
-    updater = Updater('5216529575:AAEHdKsY9COfeGD1Mwm_M0C6chpNQ53t3kI', use_context=True)
+    updater = Updater('TOKEN!!', use_context=True)
 
     # Get the dispatcher to register handlers
     dp = updater.dispatcher
