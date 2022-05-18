@@ -7,8 +7,6 @@ import time
 from images import *
 from images1 import *
 
-
-
 def start_command(update, context):
     game_data['state_game'] = True
     game_data['word'] = random_word()
@@ -17,7 +15,6 @@ def start_command(update, context):
     game_data['letter_aux'] = []
     # print(game_data['word'])
     game(update, context)
-
 
 def help_command(update, context):
     update.message.reply_text(
@@ -28,11 +25,9 @@ def help_command(update, context):
         /stop - спыніць гульню. 
        ''')
 
-
 def stop_command(update, context):
     game_data['state_game'] = False
     update.message.reply_text('😎 Бот спынены. Адпраўце /start  каб пачаць гульню')
-
 
 def random_word():
     return words[random.randint(0, len(words) - 1)][:-1]
@@ -48,23 +43,6 @@ def display_board(update, context, game_data):
     update.message.reply_text(
         IMAGES[game_data['life']] + " ".join(game_data['spaces']) + '\n\n' + 'Выбярыце літару 🙂 "Дз" і "Дж" абазначаюцца 2ма літарамі.''',
         reply_markup=reply_markup)
-
-# def display_board1(update, context, game_data):
-#     keyboard = [['Падзяліцца'],]
-#
-#     inline_markup = InlineKeyboardMarkup(text='Try', switch_inline_query="Telegram")
-#     update.message.reply_text(
-#             IMAGES1 + '\n\n' +
-#             'Віншуем! \n Ваша слова {}. \n '
-#             'Вы зарабілі {} балаў 🏆'.format(game_data['word'],
-#                100 - game_data['life'] * 10))
-#
-
-# def display_board1 (message):
-#     markup=InlineKeyboardMarkup()
-#     switch_button=InlineKeyboardButton(text='Try', switch_inline_query="Telegram")
-#     markup.add(switch_button)
-#     message.send_message(message.chat.id, "Выбраць чат", reply_markup = markup)
 
 def game(update, context, **kwargs):
     if game_data['state_game']:
@@ -106,11 +84,7 @@ def game(update, context, **kwargs):
                 update.message.reply_text(
                    IMAGES1 + '\n\n' +
                     'Віншуем! \n Ваша слова {}. \n Вы зарабілі {} балаў 🏆'.format(game_data['word'], 100-game_data['life']*10))
-                ###display_board1()
-                # keyboard = InlineKeyboardMarkup()
-                # switch_button = InlineKeyboardButton(text="Нажми меня", switch_inline_query="Telegram")
-                # keyboard.add(switch_button)
-                # update.message.reply("Я – сообщение из обычного режима", reply_markup=keyboard)
+                
                 game_data['state_game'] = False
     else:
         update.message.reply_text('Адпраўце /start каб пачаць гульню')
